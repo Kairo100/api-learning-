@@ -16,6 +16,17 @@ async function getWeather(city){
     const apiKey = 'd0613f7be24508b638cb166937a448df';
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
-    
+    try{
+        const response  = await axios.get(url);
+        const weather = response.data;
+        console.log(`weather in ${weather.name}, ${weather.sys.country}:`);
+        console.log(`Tempature: ${weather.main.temp} degree celcius`);
+        console.log(`Condition: ${weather.weather[0].description}`);
+        console.log(`Humidity: ${weather.main.humidity}%`);
+
+    }
+    catch(error){
+        console.log{"Could not etchj data from openweather api"}
+    }
 
 }
