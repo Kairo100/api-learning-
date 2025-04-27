@@ -25,10 +25,14 @@ async function getCyto(price) {
         const cypto = response.data[price].usd;
         //charAt retrives the first charcter of bitcoin
         //.slice returing the rest of strings starting from second character
-        console.log(`${price.charAt(0).toUpperCase()+ price.slice(1)} Price: $${price}`)
+        console.log(`${price.charAt(0).toUpperCase()+ price.slice(1)} Price: $${cypto}`)
     }
     catch(error){
             console.log("error fetching cryptocurrency price ", error);
     }
 }
 
+rl.question("Enter the cryptocurrency name (e.g., bitcoin, ethereum):", (price)=>{
+    getCyto(price);
+    rl.close();
+})
