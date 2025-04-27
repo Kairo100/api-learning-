@@ -6,7 +6,7 @@ const readline = require('readline');
 //build interface
 const rl = readline.createInterface({
     input:process.stdin,
-    input:process.stdout
+    output:process.stdout
 })
 
 // function to fetch data
@@ -31,11 +31,49 @@ async function getJoke() {
 }
 
 rl.question("Would you like to hear a joke? (yes/no): ", (answer)=>{
-    if(answer.toLocaleLowerCase=== "yes"){
+    if(answer.toLocaleLowerCase ()=== "yes"){
         getJoke();
     }
     else{
         console.log('Okay, maybe next time!');
+        rl.close();
     }
-    rl.close();
+   
+})
+
+
+//function based of category
+
+
+async function catJoke(cat) {
+    const url = `https://sv443.net/jokeapi/v2/joke/${cat}`;
+    
+   try{
+     
+    const response = await axios.get(url);
+
+    if(response.data.category=== cat && response.data.category.toLowerCase()=== cat.toLowerCase()){
+        if(response.data.type=== "single"){
+            console.log(`Joke:${response.data.joke}`);
+        }
+        else if(response.data.type=== "twopart"){
+            console.log(`Joke:${response.data.setup}`);
+            console.log(`Delivery:${response.data.delivery}`);
+        }
+        
+    }
+    else{
+        console.log('Sorry, no joke available for this category.');
+    }
+   
+   }
+   catch(error){
+    console.log('There is error fetching data from jokeApi', error);
+   }
+}
+
+rl.question("Would you like to hear a joke? Enter your category (e.g., Programming, Misc, etc.): ", (cat)=>{
+    
+        catJoke(cat);
+        rl.close();
 })
