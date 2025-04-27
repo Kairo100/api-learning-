@@ -26,7 +26,7 @@ async function getWeather(city){
 
     }
     catch(error){
-        console.log("Could not etchj data from openweather api")
+        console.log("Could not etchj data from openweather api");
     }
 
 }
