@@ -30,3 +30,12 @@ async function getJoke() {
    }
 }
 
+rl.question("Would you like to hear a joke? (yes/no): ", (answer)=>{
+    if(answer.toLocaleLowerCase=== "yes"){
+        getJoke();
+    }
+    else{
+        console.log('Okay, maybe next time!');
+    }
+    rl.close();
+})
