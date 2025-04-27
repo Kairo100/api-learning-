@@ -4,3 +4,8 @@
 const axios = require('axios');
 const readline = require('readline');
 
+//then create interface for input and output of readline
+const rl = readline.createInterface({
+    input:process.stdin,
+    output:process.stdout
+})
