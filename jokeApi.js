@@ -42,7 +42,7 @@ async function catJoke(cat) {
      
     const response = await axios.get(url);
 
-    if(response.data.category=== cat && response.data.category.toLowerCase()=== cat.toLowerCase()){
+    if(response.data.category.toLowerCase()=== cat.toLowerCase()){
         if(response.data.type=== "single"){
             console.log(`Joke:${response.data.joke}`);
         }
