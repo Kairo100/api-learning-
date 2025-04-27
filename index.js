@@ -30,3 +30,9 @@ async function getWeather(city){
     }
 
 }
+
+//prompting user to enter city name
+rl.question("Enter city Name to know weather", (city)=>{
+    getWeather(city);
+    rl.close();
+;})
