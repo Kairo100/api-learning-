@@ -30,16 +30,6 @@ async function getJoke() {
    }
 }
 
-rl.question("Would you like to hear a joke? (yes/no): ", (answer)=>{
-    if(answer.toLocaleLowerCase ()=== "yes"){
-        getJoke();
-    }
-    else{
-        console.log('Okay, maybe next time!');
-        rl.close();
-    }
-   
-})
 
 
 //function based of category
@@ -72,8 +62,30 @@ async function catJoke(cat) {
    }
 }
 
-rl.question("Would you like to hear a joke? Enter your category (e.g., Programming, Misc, etc.): ", (cat)=>{
+
+
+
+//the rl.question cant re run so make the two be inside each other
+rl.question("Would you like to hear a joke? (yes/no): ", (answer)=>{
+    if(answer.toLocaleLowerCase ()=== "yes"){
+        rl.question("Would you like to hear a joke? Enter your category (e.g., Programming, Misc, etc.): ", (cat)=>{
     
-        catJoke(cat);
+            if(cat.trim()=== ""){
+                getJoke();
+            }
+            else{
+                catJoke(cat)
+            }
+            rl.close();
+    })
+    
+        
+    }
+    else{
+        console.log('Okay, maybe next time!');
         rl.close();
+    }
+   
 })
+
+
