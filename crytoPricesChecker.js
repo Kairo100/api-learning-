@@ -13,7 +13,7 @@ const rl = readline.createInterface({
 
 
 
-async function getCyto(price) {
+async function getCryto(price) {
     // const apikey ='CG-y6sG52uhR8FDvwEXLq4aioNp';  in the free version i dont need one api key for coingecko
     // const url = `https://pro-api.coingecko.com/api/v3/ping?${price}key=${apikey}`;
     
@@ -33,6 +33,23 @@ async function getCyto(price) {
 }
 
 rl.question("Enter the cryptocurrency name (e.g., bitcoin, ethereum):", (price)=>{
-    getCyto(price);
+    getCryto(price);
     rl.close();
 })
+
+
+async function readCryto() {
+    const url = `https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd`;
+    try {
+        const response = await axios.get(url);
+        const bitcoin = response.data.bitcoin.usd;
+        const ethereum = response.data.ethereum.usd;
+        console.log(   `the price of bitcoin is :${bitcoin}`);
+        console.log(`the price of ethereum is :${ethereum}`);
+
+    }
+    catch (error){
+        console.log("there is error of fetching crytocurrency api", error)
+    }
+}
+readCryto();
